@@ -17,10 +17,10 @@ class puppet_summary (
   String[3] $version = '1.10',
   Stdlib::Port::Unprivileged $port = 4321,
   Stdlib::IP::Address::Nosubnet $ip = '127.0.0.1',
-  String1[1] $user = 'puppet-summary',
-  String1[1] $group = $user,
+  String[1] $user = 'puppet-summary',
+  String[1] $group = $user,
   Stdlib::Absolutepath $homedir = "/opt/${user}",
-  Stdlib::Absolutepath $shell = '/sbin/nologin',
+  Stdlib::Absolutepath $shell = $facts['os']['family'] ? { 'Debian' => '/usr/sbin/nologin', 'RedHat' => '/sbin/nologin', },
 ) {
   user { $user:
     ensure         => 'present',
@@ -49,23 +49,23 @@ class puppet_summary (
     require => Archive["/opt/puppet-summary/puppet-summary-${version}"],
   }
   $content = @("EOT")
-# THIS FILE IS MANAGED BY PUPPET
-[Unit]
-Description=Puppet summary web interface
-After=network-online.target
-Wants=network-online.target
-Documentation=https://github.com/skx/puppet-summary
+    # THIS FILE IS MANAGED BY PUPPET
+    [Unit]
+    Description=Puppet summary web interface
+    After=network-online.target
+    Wants=network-online.target
+    Documentation=https://github.com/skx/puppet-summary
 
-[Service]
-User=puppet-summary
-Group=puppet-summary
-WorkingDirectory=${homedir}
-PrivateTmp=true
-ExecStart=/usr/bin/puppet-summary serve -host "${ip}" -port "${port}"
+    [Service]
+    User=puppet-summary
+    Group=puppet-summary
+    WorkingDirectory=${homedir}
+    PrivateTmp=true
+    ExecStart=/usr/bin/puppet-summary serve -host "${ip}" -port "${port}"
 
-[Install]
-WantedBy=multi-user.target
-|-EOT
+    [Install]
+    WantedBy=multi-user.target
+    |-EOT
 
   systemd::unit_file { 'puppet-summary.service':
     content => $content,
