@@ -1,0 +1,54 @@
+{
+  "name": "puppet-puppet_summary",
+  "version": "1.0.0-rc0",
+  "summary": "Manages the puppet-summary service (report processor)",
+  "author": "Vox Pupuli",
+  "dependencies": [
+    {
+      "name": "camptocamp/systemd",
+      "version_requirement": ">= 3.0.0 < 4.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 7.1.0 < 8.0.0"
+    }
+  ],
+  "source": "https://github.com/voxpupuli/puppet-puppet_summary.git",
+  "project_page": "https://github.com/voxpupuli/puppet-puppet_summary",
+  "issues_url": "https://github.com/voxpupuli/puppet-puppet_summary/issues",
+  "license": "AGPL-3.0",
+  "tags": [
+    "puppet-summary",
+    "reports",
+    "report-processor"
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.1.0 < 8.0.0"
+    }
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "20.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "10"
+      ]
+    },
+    {
+      "operatingsystem": "Archlinux"
+    }
+  ]
+}
