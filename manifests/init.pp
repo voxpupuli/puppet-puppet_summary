@@ -74,6 +74,7 @@ class puppet_summary (
     RestrictSUIDSGID=yes
     MemoryDenyWriteExecute=yes
     LockPersonality=yes
+    ReadWritePaths=${homedir}
     ExecStart=/usr/bin/puppet-summary serve -host "${ip}" -port "${port}"
 
     [Install]
