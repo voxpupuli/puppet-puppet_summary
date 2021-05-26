@@ -16,6 +16,8 @@ manage the puppet-summary deployment
 
 * **See also**
   * https://github.com/skx/puppet-summary
+  * https://gist.github.com/ageis/f5595e59b1cddb1513d1b425a323db04
+  * https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Sandboxing
 
 #### Parameters
 
