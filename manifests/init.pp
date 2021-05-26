@@ -10,6 +10,8 @@
 # @param shell the new shell for the new user
 #
 # @see https://github.com/skx/puppet-summary
+# @see https://gist.github.com/ageis/f5595e59b1cddb1513d1b425a323db04
+# @see https://www.freedesktop.org/software/systemd/man/systemd.exec.html#Sandboxing
 #
 # @author Tim Meusel <tim@bastelfreak.de>
 #
@@ -74,6 +76,7 @@ class puppet_summary (
     RestrictSUIDSGID=yes
     MemoryDenyWriteExecute=yes
     LockPersonality=yes
+    ReadWritePaths=${homedir}
     ExecStart=/usr/bin/puppet-summary serve -host "${ip}" -port "${port}"
 
     [Install]
