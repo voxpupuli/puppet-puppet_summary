@@ -60,7 +60,20 @@ class puppet_summary (
     User=puppet-summary
     Group=puppet-summary
     WorkingDirectory=${homedir}
-    PrivateTmp=true
+    PrivateTmp=yes
+    PrivateDevices=yes
+    DevicePolicy=closed
+    ProtectSystem=strict
+    ProtectHome=read-only
+    ProtectControlGroups=yes
+    ProtectKernelModules=yes
+    ProtectKernelTunables=yes
+    RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6 AF_NETLINK
+    RestrictNamespaces=yes
+    RestrictRealtime=yes
+    RestrictSUIDSGID=yes
+    MemoryDenyWriteExecute=yes
+    LockPersonality=yes
     ExecStart=/usr/bin/puppet-summary serve -host "${ip}" -port "${port}"
 
     [Install]
