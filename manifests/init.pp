@@ -20,7 +20,7 @@ class puppet_summary (
   String[1] $user = 'puppet-summary',
   String[1] $group = $user,
   Stdlib::Absolutepath $homedir = "/opt/${user}",
-  Stdlib::Absolutepath $shell = $facts['os']['family'] ? { 'Debian' => '/usr/sbin/nologin', 'RedHat' => '/sbin/nologin', },
+  Stdlib::Absolutepath $shell = $facts['os']['family'] ? { 'Debian' => '/usr/sbin/nologin', 'RedHat' => '/sbin/nologin', 'Archlinux' => '/usr/bin/nologin', },
 ) {
   user { $user:
     ensure         => 'present',
