@@ -10,6 +10,7 @@ begin
         def response_code
           m = %r{Response-Code: (?<code>\d+)}.match(stderr)
           return 0 unless m
+
           m[:code].to_i
         end
 
@@ -60,6 +61,6 @@ begin
       end
     end
   end
-rescue LoadError # rubocop:disable Lint/HandleExceptions
+rescue LoadError
   # serverspec not present - usually in unit tests
 end
