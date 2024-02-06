@@ -23,15 +23,15 @@ manage the puppet-summary deployment
 
 The following parameters are available in the `puppet_summary` class:
 
-* [`version`](#version)
-* [`port`](#port)
-* [`ip`](#ip)
-* [`user`](#user)
-* [`group`](#group)
-* [`homedir`](#homedir)
-* [`shell`](#shell)
+* [`version`](#-puppet_summary--version)
+* [`port`](#-puppet_summary--port)
+* [`ip`](#-puppet_summary--ip)
+* [`user`](#-puppet_summary--user)
+* [`group`](#-puppet_summary--group)
+* [`homedir`](#-puppet_summary--homedir)
+* [`shell`](#-puppet_summary--shell)
 
-##### <a name="version"></a>`version`
+##### <a name="-puppet_summary--version"></a>`version`
 
 Data type: `String[3]`
 
@@ -39,7 +39,7 @@ the version that should be pulled from GitHub
 
 Default value: `'1.10'`
 
-##### <a name="port"></a>`port`
+##### <a name="-puppet_summary--port"></a>`port`
 
 Data type: `Stdlib::Port::Unprivileged`
 
@@ -47,7 +47,7 @@ port where the daemon should listen
 
 Default value: `4321`
 
-##### <a name="ip"></a>`ip`
+##### <a name="-puppet_summary--ip"></a>`ip`
 
 Data type: `Stdlib::IP::Address::Nosubnet`
 
@@ -55,7 +55,7 @@ ip where the daemon should listen
 
 Default value: `'127.0.0.1'`
 
-##### <a name="user"></a>`user`
+##### <a name="-puppet_summary--user"></a>`user`
 
 Data type: `String[1]`
 
@@ -63,7 +63,7 @@ username that should be created
 
 Default value: `'puppet-summary'`
 
-##### <a name="group"></a>`group`
+##### <a name="-puppet_summary--group"></a>`group`
 
 Data type: `String[1]`
 
@@ -71,7 +71,7 @@ groupname that should be created
 
 Default value: `$user`
 
-##### <a name="homedir"></a>`homedir`
+##### <a name="-puppet_summary--homedir"></a>`homedir`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -79,11 +79,11 @@ home directory for the new user
 
 Default value: `"/opt/${user}"`
 
-##### <a name="shell"></a>`shell`
+##### <a name="-puppet_summary--shell"></a>`shell`
 
 Data type: `Stdlib::Absolutepath`
 
 the new shell for the new user
 
-Default value: `$facts['os']['family']`
+Default value: `$facts['os']['family'] ? { 'Debian' => '/usr/sbin/nologin', 'RedHat' => '/sbin/nologin', 'Archlinux' => '/usr/bin/nologin'`
 
